@@ -23,3 +23,18 @@ var gen = idMaker(); // "Generator { }"
 console.log(gen.next().value); // 0
 console.log(gen.next().value); // 1
 console.log(gen.next().value); // 2
+
+
+//async generator ES9
+
+async function* anotherGenerator() {
+  yield await Promise.resolve(1)
+  yield await Promise.resolve(2)
+  yield await Promise.resolve(3)
+}
+
+const generador2 = anotherGenerator()
+generador2.next().then(respuesta => console.log(respuesta.value))
+generador2.next().then(respuesta => console.log(respuesta.value))
+generador2.next().then(respuesta => console.log(respuesta.value))
+console.log('Hello');

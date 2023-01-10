@@ -72,7 +72,7 @@ function hola (primero, segundo, ...resto) {
 
 hola(1,2,3,4,5)
 
-
+// la propagacion de objetos se agrego en ES9
 // También sirve para obtener los elementos restantes de un array u objeto usando desestructuración
 const objeto = {
   nombre: "Andres",
