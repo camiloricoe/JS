@@ -9,4 +9,8 @@ const add2 = (x,y) => {
 return x + y
 }
 
-export {add2} // export { add, otherFunction, ... } etc
+function hello() {
+    console.log("Hola Mundo")
+}
+
+export {add2, hello} // export { add, otherFunction, ... } etc
