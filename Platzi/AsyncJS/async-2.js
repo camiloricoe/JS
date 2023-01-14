@@ -22,3 +22,22 @@ const anotherFunction = async (urlApi) => {
 };
 
 anotherFunction(API);
+
+
+
+
+export async function runCode(url) {
+  try {
+    // validar formato correcto url
+    new URL(url);
+  } catch (e) {
+    throw new Error("Invalid URL");
+  }
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw new Error("Something was wrong");
+  }
+}
