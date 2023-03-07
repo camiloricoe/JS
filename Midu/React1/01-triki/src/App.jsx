@@ -60,7 +60,7 @@ function App() {
         }
       </section>
 
-      <section>
+      <section className='turn'>
         <Square isSelected = {turn=== Turns.X}>{Turns.X}</Square>
         <Square isSelected = {turn=== Turns.O}>{Turns.O}</Square>
       </section>
