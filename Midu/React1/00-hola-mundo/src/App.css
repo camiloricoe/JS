@@ -39,7 +39,13 @@
 }
 
 
-/* 
+.tw-followCard-button.is-following {
+    border: 1px solid #bbb;
+    background: transparent;
+    color: #fff;
+    width: 140px;
+}
+
 
 .tw-followCard-button:hover {
     opacity: .8;
@@ -47,13 +53,6 @@
 
 .tw-followCard-text {
     display: block;
-}
-
-.tw-followCard-button.is-following {
-    border: 1px solid #bbb;
-    background: transparent;
-    color: #fff;
-    width: 140px;
 }
 
 .tw-followCard-button.is-following:hover {
@@ -72,6 +71,12 @@
     display: block;
 }
 
+
 .tw-followCard-stopFollow {
     display: none;
-} */
+}
+
+
+
+
+
