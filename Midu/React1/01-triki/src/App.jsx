@@ -27,10 +27,14 @@ const Square = ({children, isSelected, updateBoard, index}) => {
 function App() {
   
   const [board ,setBoard] = useState(Array(9).fill(null))
-
   const [turn, setTurn] = useState(Turns.X)
+  const [winner, setWinner] = useState(null)
+
 
   const updateBoard = (index) => {
+
+    if (board[index]) return
+
     const newBoard =[...board]
     newBoard[index] = turn
     setBoard(newBoard)
