@@ -12,6 +12,12 @@ function App() {
   const [turn, setTurn] = useState(Turns.X)
   const [winner, setWinner] = useState(null)
 
+  const resetGame = () => {
+    setBoard(Array(9).fill(null))
+    setTurn(Turns.X)
+    setWinner(null)
+  }
+
 
   const updateBoard = (index) => {
 
@@ -59,6 +65,28 @@ function App() {
         <Square isSelected = {turn=== Turns.X}>{Turns.X}</Square>
         <Square isSelected = {turn=== Turns.O}>{Turns.O}</Square>
       </section>
+
+      {
+        winner !== null && (
+          <section className='winner'>
+          <div className='text'>
+            <h2>{winner === false ? 'Empate' : 'Ganó:'}</h2>
+
+            <header className='win'>
+              {winner && <Square>{winner}</Square>}
+            </header>
+
+            <footer>
+              <button onClick={resetGame}>Empezar de nuevo</button>
+            </footer>
+          </div>
+    </section>
+
+
+
+
+        ) 
+      }
 
 
     </main>
