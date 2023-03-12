@@ -1,27 +1,9 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import { Turns } from './constants.js'
+import { checkWinnerFrom, checkEndGame } from './logic/board.js'
+import {Square} from './components/Square.jsx'
 
-const Turns ={
-  X: 'x',
-  O: 'o'
-}
-
-
-const Square = ({children, isSelected, updateBoard, index}) => {
-  
-  const className = `square ${isSelected ? 'is-selected':'' }`
-  
-  const handleClick = ()=> {
-    updateBoard(index)
-  }
-  
-  
-  return(
-    <div onClick={handleClick} className={className}>
-      {children}
-    </div>
-  ) }
 
 
 function App() {
@@ -33,7 +15,7 @@ function App() {
 
   const updateBoard = (index) => {
 
-    if (board[index]) return
+    if (board[index] || winner) return
 
     const newBoard =[...board]
     newBoard[index] = turn
@@ -41,6 +23,15 @@ function App() {
 
     const newTurn = turn === Turns.X ? Turns.O : Turns.X
     setTurn(newTurn)
+
+    const newWinner = checkWinnerFrom(newBoard)
+    if (newWinner) {
+      setWinner(newWinner)
+    } else if (checkEndGame(newBoard)) {
+      setWinner(false) // empate
+    }
+
+
 
   }
 
