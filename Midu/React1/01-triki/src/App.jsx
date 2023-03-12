@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import confetti from 'canvas-confetti'
 import './App.css'
 import { Turns } from './constants.js'
 import { checkWinnerFrom, checkEndGame } from './logic/board.js'
@@ -32,6 +33,7 @@ function App() {
 
     const newWinner = checkWinnerFrom(newBoard)
     if (newWinner) {
+      confetti()
       setWinner(newWinner)
     } else if (checkEndGame(newBoard)) {
       setWinner(false) // empate
@@ -81,9 +83,6 @@ function App() {
             </footer>
           </div>
     </section>
-
-
-
 
         ) 
       }
