@@ -4,6 +4,7 @@ import './App.css'
 import { Turns } from './constants.js'
 import { checkWinnerFrom, checkEndGame } from './logic/board.js'
 import {Square} from './components/Square.jsx'
+import {WinnerModal} from './components/WinnerModal.jsx'
 
 
 
@@ -68,24 +69,7 @@ function App() {
         <Square isSelected = {turn=== Turns.O}>{Turns.O}</Square>
       </section>
 
-      {
-        winner !== null && (
-          <section className='winner'>
-          <div className='text'>
-            <h2>{winner === false ? 'Empate' : 'Ganó:'}</h2>
-
-            <header className='win'>
-              {winner && <Square>{winner}</Square>}
-            </header>
-
-            <footer>
-              <button onClick={resetGame}>Empezar de nuevo</button>
-            </footer>
-          </div>
-    </section>
-
-        ) 
-      }
+      <WinnerModal resetGame={resetGame} winner={winner}> </WinnerModal>
 
 
     </main>
