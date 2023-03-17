@@ -11,10 +11,17 @@ export function App() {
 
     useEffect(() => {
         fetch(CAT_ENDPOINT_FACT)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw Error('Error fetching')
+                return res.json()
+            })
             .then(data => {
                 const { fact } = data
                 setFact(fact)
+            })
+            .catch((err) => {
+                //error si falla la respuesta
+                //o error si falla peticion
             })
     }, [])
 
