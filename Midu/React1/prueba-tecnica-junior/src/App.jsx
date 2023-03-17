@@ -9,7 +9,7 @@ export function App() {
     const [fact, setFact] = useState()
     const [imageURL, setimageURL] = useState()
 
-    useEffect(() => {
+    const getRandomFact = () => {
         fetch(CAT_ENDPOINT_FACT)
             .then(res => {
                 if (!res.ok) throw Error('Error fetching')
@@ -23,7 +23,10 @@ export function App() {
                 //error si falla la respuesta
                 //o error si falla peticion
             })
-    }, [])
+
+    }
+
+    useEffect(getRandomFact, [])
 
 
     useEffect(() => {
@@ -51,6 +54,7 @@ export function App() {
     return (
         <main>
             <h1>Hola mundo</h1>
+            <button onClick={getRandomFact}>Get New Fact</button>
             <section>
                 {fact && <p>{fact}</p>}
                 {imageURL && <img src={`${CAT_PREFIX_IMAGE_URL}${imageURL}`} alt={`Image extracted using the first word for ${fact}`} />}
