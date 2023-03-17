@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import './App.css'
+import { getRandomFact } from "./Sevices/fact.js"
+
 
 const CAT_ENDPOINT_FACT = 'https://catfact.ninja/fact'
 // const CAT_ENDPOINT_URL = `https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`
@@ -9,24 +11,13 @@ export function App() {
     const [fact, setFact] = useState()
     const [imageURL, setimageURL] = useState()
 
-    const getRandomFact = () => {
-        fetch(CAT_ENDPOINT_FACT)
-            .then(res => {
-                if (!res.ok) throw Error('Error fetching')
-                return res.json()
-            })
-            .then(data => {
-                const { fact } = data
-                setFact(fact)
-            })
-            .catch((err) => {
-                //error si falla la respuesta
-                //o error si falla peticion
-            })
-
+    const handleClick = () => {
+        getRandomFact().then(setFact)
     }
 
-    useEffect(getRandomFact, [])
+    useEffect(() => {
+        getRandomFact().then(setFact)
+    }, [])
 
 
     useEffect(() => {
@@ -54,7 +45,7 @@ export function App() {
     return (
         <main>
             <h1>Hola mundo</h1>
-            <button onClick={getRandomFact}>Get New Fact</button>
+            <button onClick={handleClick}>Get New Fact</button>
             <section>
                 {fact && <p>{fact}</p>}
                 {imageURL && <img src={`${CAT_PREFIX_IMAGE_URL}${imageURL}`} alt={`Image extracted using the first word for ${fact}`} />}
