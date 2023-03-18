@@ -7,18 +7,8 @@ const CAT_ENDPOINT_FACT = 'https://catfact.ninja/fact'
 // const CAT_ENDPOINT_URL = `https://cataas.com/cat/says/${threeFirstWords}?size=50&color=red&json=true`
 const CAT_PREFIX_IMAGE_URL = 'https://cataas.com'
 
-export function App() {
-    const [fact, setFact] = useState()
+function useCatImage({ fact }) {
     const [imageURL, setimageURL] = useState()
-
-    const handleClick = () => {
-        getRandomFact().then(setFact)
-    }
-
-    useEffect(() => {
-        getRandomFact().then(setFact)
-    }, [])
-
 
     useEffect(() => {
         if (!fact) return
@@ -39,6 +29,26 @@ export function App() {
             })
 
     }, [fact])
+
+    return { imageURL }
+
+}
+
+export function App() {
+    const [fact, setFact] = useState()
+    const { imageURL } = useCatImage({ fact }) //custom hook 
+
+
+    const handleClick = () => {
+        getRandomFact().then(setFact)
+    }
+
+    useEffect(() => {
+        getRandomFact().then(setFact)
+    }, [])
+
+
+
 
 
 
