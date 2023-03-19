@@ -28,8 +28,10 @@ export function App() {
                 {fact && <p>{fact}</p>}
                 {imageURL && <img src={imageURL} alt={`Image extracted using the first word for ${fact}`} />}
             </section>
-            <Otro />
-            <Otro />
+            <section>
+                <Otro />
+                <Otro />
+            </section>
             <Otro />
 
         </main>
