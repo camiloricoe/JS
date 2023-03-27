@@ -37,9 +37,10 @@ function useSearch() {
 }
 
 function App() {
-  const { movies } = useMovies()
-  const inputRef = useRef()
   const { search, setSearch, error } = useSearch()
+  const { movies, getMovies } = useMovies({ search })
+  const inputRef = useRef()
+
 
 
   const handleChange = (event) => {
@@ -54,10 +55,12 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault()
     const fields = Object.fromEntries(new window.FormData(event.target))
+    /*
     console.log(fields);
     console.log(fields.peli);
     console.log({ search });
-    console.log(search);
+    console.log(search);*/
+    getMovies()
   }
 
 
