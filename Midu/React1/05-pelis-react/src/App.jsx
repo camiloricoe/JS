@@ -38,7 +38,7 @@ function useSearch() {
 
 function App() {
   const { search, setSearch, error } = useSearch()
-  const { movies, getMovies } = useMovies({ search })
+  const { movies, getMovies, loading } = useMovies({ search })
   const inputRef = useRef()
 
 
@@ -102,7 +102,7 @@ function App() {
       </header>
 
       <main>
-        <Movies movies={movies} />
+        {loading ? <p>Cargando...</p> : <Movies movies={movies} />}
       </main>
     </div>
   )
